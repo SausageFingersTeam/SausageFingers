@@ -6,13 +6,9 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Sinest on 10/23/2017.
- */
-
 public class RegisterRequest extends StringRequest {
 
-    private static final String REGISTER_REQUEST_URL = "https://pervasive-regret.000webhostapp.com/Register.php";
+    public static final String REGISTER_REQUEST_URL = "http://192.168.1.65/android_connect/ws/Register.php";
     private Map<String, String> params;
 
     public RegisterRequest(String first_name, String last_name, String license_number, String email, String password, Response.Listener<String> listener){
