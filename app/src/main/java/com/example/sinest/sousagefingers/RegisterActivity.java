@@ -1,15 +1,15 @@
 package com.example.sinest.sousagefingers;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,8 +46,15 @@ public class RegisterActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonResponse.getString("message"), Toast.LENGTH_LONG).show();
 
-                            if(jsonResponse.getString("message")=="Registred Successfully! :)"){
-                                
+                            if(jsonResponse.getString("message").equals("Registered Successfully! :)") || jsonResponse.getString("message").equals("User already Exists, Please Login.") ){
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                RegisterActivity.this.startActivity(intent);
+                            }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                builder.setMessage("Register Failed!")
+                                        .setNegativeButton("Retry", null)
+                                        .create()
+                                        .show();
                             }
 
                         }catch (JSONException e) {
@@ -57,8 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
                 };
 
                 RegisterRequest registerRequest = new RegisterRequest(first_name, last_name, driver_license, email, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
+                RequestHandler.getInstance(RegisterActivity.this).addToRequestQueue(registerRequest);
+                //TODO RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                //TODO queue.add(registerRequest);
 
             }
         });

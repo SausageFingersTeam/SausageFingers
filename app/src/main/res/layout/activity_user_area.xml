@@ -18,10 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="TextView" />
+            android:text="Welcome User" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -37,7 +37,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/tvLog"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name" />
